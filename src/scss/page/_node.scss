@@ -1,0 +1,138 @@
+.node {
+	text-align: center;
+	position: relative;
+
+	@media (min-width: rem($mobile)) {
+		&::before,
+		&::after {
+			position: absolute;
+			transform: translate(-50%, -50%);
+		}
+
+		&::before {
+			content: url('/img/decor/node-honeycomb.png');
+			top: -5.6%;
+			left: calc(50% - rem(927));
+		}
+
+		&::after {
+			content: '';
+			top: 6.4%;
+			left: calc(50% - rem(571));
+			width: rem(160);
+			height: rem(160);
+			border-radius: 50%;
+			filter: blur(rem(70.5));
+			background: #00454238;
+		}
+	}
+
+	&__title {
+		@include adaptiveValue('font-size', 40, 27);
+		line-height: lh(47, 40);
+		font-weight: 700;
+		@include adaptiveValue('margin-bottom', 115, 80);
+		max-width: rem(795);
+		margin: 0 auto;
+
+		@media (max-width: rem($mobile-small)) {
+			font-weight: 600;
+		}
+	}
+
+	&__gif {
+		max-width: rem(605);
+		margin: 0 auto;
+		@include adaptiveValue('margin-bottom', 70, 90);
+		position: relative;
+
+		img {
+			width: 100%;
+		}
+
+		&::before {
+			content: '';
+			@include pos-center;
+			z-index: -1;
+			@include adaptiveValue('width', 770, 450);
+			@include adaptiveValue('height', 251, 147);
+			border-radius: 50%;
+			background: #ffffff1a;
+			filter: blur(rem(49.5));
+		}
+	}
+
+	&__text {
+		max-width: rem(795);
+		margin: 0 auto;
+		@include adaptiveValue('font-size', 24, 15);
+		line-height: lh(28, 24);
+		font-weight: 600;
+		@include adaptiveValue('margin-bottom', 110, 120);
+	}
+
+	&__advantages {
+		font-size: rem(16);
+		font-weight: 500;
+
+		display: grid;
+		row-gap: rem(30);
+		position: relative;
+
+		@media (min-width: rem($mobile)) {
+			grid-template-columns: repeat(3, 1fr);
+
+			border-bottom: 1px solid;
+			border-image: linear-gradient(90deg, #00000000, #01716b, #00000000);
+			border-image-slice: 1;
+
+			&::before {
+				content: url('/img/decor/world-wide-web.png');
+				@include pos-center(x);
+				top: 21%;
+				z-index: -1;
+			}
+		}
+
+	}
+
+	&__advantage {
+		padding: 0 rem(15);
+		@include adaptiveValue('padding-bottom', 70, 30);
+
+		@media (min-width: rem($mobile)) {
+			border-left: 1px solid;
+			border-image: linear-gradient(#00000000, #01716b, #00000000);
+			border-image-slice: 1;
+
+			&:last-child {
+				border-right: 1px solid;
+			}
+		}
+
+		@media (max-width: rem($mobile)) {
+			&:not(:last-child) {
+				border-bottom: 1px solid;
+				border-image: linear-gradient(90deg, #00000000, #01716b, #00000000);
+				border-image-slice: 1;
+			}
+		}
+	}
+
+	&__icon {
+		filter: drop-shadow(0 0 rem(13) #5dcdc769);
+		width: rem(127);
+		height: rem(113);
+		margin: 0 auto rem(30);
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+			object-position: 50% 50%;
+		}
+	}
+
+	&__advantage-text {
+	}
+}

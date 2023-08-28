@@ -1,0 +1,141 @@
+.causes {
+	@media (min-width: rem($mobile)) {
+		position: relative;
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: 45%;
+			left: calc(50% - rem(110));
+			transform: translateY(-50%);
+			z-index: -1;
+			width: rem(1260);
+			height: rem(902);
+			border-radius: 50%;
+			background: #01503812;
+			filter: blur(rem(61.5));
+		}
+	}
+
+	&__title {
+		font-weight: 700;
+		@include adaptiveValue('margin-bottom', 60, 40);
+	}
+
+	&__list {
+		font-size: rem(20);
+		text-shadow: 0 0 em(10, 20) #{$text-general}d7;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: rem(24) rem(16);
+
+		@media (min-width: rem($mobile)) {
+			position: relative;
+
+			&::before,
+			&::after {
+				@include pos-center;
+				z-index: -1;
+			}
+
+			&::before {
+				content: '';
+				width: rem(852);
+				height: rem(553.388);
+				top: 55%;
+				border-radius: 50%;
+				background: #01465080;
+				filter: blur(rem(176));
+			}
+			&::after {
+				content: url('/img/decor/causes-honeycomb.png');
+				top: 55%;
+				left: 47%;
+				border-radius: 50%;
+			}
+		}
+
+		@media (max-width: rem($tablet)) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@media (max-width: rem($mobile)) {
+			grid-template-columns: auto;
+			row-gap: rem(20);
+		}
+	}
+
+	&__item {
+		padding: rem(20);
+
+		@media (min-width: rem($mobile-small)) {
+			display: flex;
+			justify-content: space-between;
+			flex-direction: column;
+			gap: rem(25);
+		}
+
+		border-radius: rem($rounded);
+		background: #{$bg-darker}4d;
+		backdrop-filter: blur(rem(5));
+		overflow: hidden;
+
+		position: relative;
+
+		&::before {
+			content: '';
+			position: absolute;
+			inset: 0;
+			border-radius: rem(calc($rounded + 2));
+			padding: 1px;
+			background: linear-gradient(#ffffff80, #8e8e8e80);
+			-webkit-mask: linear-gradient(#fff 0 0) content-box,
+				linear-gradient(#fff 0 0);
+			mask: linear-gradient(#fff 0 0) content-box,
+				linear-gradient(#fff 0 0);
+			-webkit-mask-composite: xor;
+			mask-composite: exclude;
+		}
+
+		svg,
+		path {
+			transition: stroke $duration, fill $duration;
+		}
+
+		@media (any-hover: hover) {
+			&:hover {
+				svg {
+					filter: drop-shadow(0 0 rem(5) #19e2d9b7);
+				}
+				path {
+					stroke: #19e2d9;
+
+					&[fill='white'] {
+						fill: #19e2d9;
+					}
+				}
+			}
+		}
+	}
+
+	&__icon {
+		@extend %flex-center;
+		width: rem(105);
+		height: rem(105);
+		border-radius: 50%;
+		border-bottom-right-radius: 0;
+		border: 1px solid #363d3f;
+		align-self: end;
+		margin: 0 rem(-26) rem(-23) 0;
+
+		svg {
+			filter: drop-shadow(0 0 rem(5) #ffffffb7);
+		}
+
+		@media (max-width: rem($mobile-small)) {
+			float: right;
+			margin-top: rem(10);
+			margin-left: rem(10);
+		}
+	}
+}

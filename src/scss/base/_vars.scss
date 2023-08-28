@@ -1,0 +1,27 @@
+$font: 'Raleway', sans-serif;
+$subfont: 'Inter', sans-serif;
+$fz: 20;
+$lh: 23;
+
+$text-general: #ffffff;
+$text-accent: #00CCC1;
+
+$bg-general: #000F0E;
+$bg-darker: #191919;
+$bg-dark: #003431bd;
+
+$min-width: 390; // Минимальная ширина, под которую необходим адаптив
+$max-width: 1920; // Ширина фрейма макета
+$container-padding: 40; // Сумма паддингов по бокам
+$container-width: 1180; // Ширина контейнера по макету
+$real-container-width: $container-padding + $container-width;
+
+$duration: .3s;
+$anim-duration: 1.5s;
+$rounded: 20;
+$rounded-mini: 10;
+
+$pc: $container-width; // ПК, ноутбуки, некоторые планшеты в горизонтальном положении
+$tablet: 991.98; // Планшеты, некоторые телефоны в горизонтальном положении
+$mobile: 767.98; // Телефоны L
+$mobile-small: 479.98;

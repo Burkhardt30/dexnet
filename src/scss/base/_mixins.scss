@@ -1,0 +1,122 @@
+@function percent($px, $from) {
+	$result: calc($px / $from) * 100%;
+	@return $result;
+}
+@function rem($px) {
+	$result: calc($px / 16) + rem;
+	@return $result;
+}
+@function em($px, $current: 16) {
+	$result: calc($px / $current) + em;
+	@return $result;
+}
+@function vw($px, $screen: 1920) {
+	$result: calc($px * 100 / $screen) + vw;
+	@return $result;
+}
+@function lh($lh, $px: 16) {
+    @return calc($lh / $px);
+}
+
+@mixin gridCards($type: fit, $min: 280px, $max: 1fr, $gap: 30px) {
+	display: grid;
+	gap: $gap;
+	grid-template-columns: repeat(auto-#{$type}, minmax($min, $max));
+}
+
+@mixin pos-center($axis: xy) {
+	position: absolute;
+
+	@if $axis == x {
+		left: 50%;
+		transform: translateX(-50%);
+	} @else if $axis == y {
+		top: 50%;
+		transform: translateY(-50%);
+	} @else {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
+
+%flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@mixin blocks($fz) {
+	border-radius: em($rounded, $fz);
+	background: $bg-block;
+	box-shadow: 0 em(.6, $fz) em(28.6, $fz) em(-14.3, $fz) #8fb6e240;
+
+	@content;
+}
+
+// Адаптивное свойство (clamp)
+
+$min-width: $min-width; // Минимальная ширина, под которую необходим адаптив
+$max-width: $max-width; // Ширина фрейма макета
+$container-padding: $container-padding; // Сумма паддингов по бокам
+$container-width: $container-width; // Ширина контейнера по макету
+$real-container-width: $real-container-width; // Реальная ширина контейнера
+
+@mixin adaptiveValue($property, $startSize, $minSize, $widthFrom: $real-container-width, $widthTo: $min-width, $keepSize: 0) {
+	@if ($startSize==0) {
+		$startSize: 0.000001;
+	}
+	@if ($minSize==0) {
+		$minSize: 0.000001;
+	}
+
+	// Для calc();
+	$addSize: math.div($startSize - $minSize, 16);
+
+	@if ($widthFrom == $real-container-width and $container-width == 0) {
+		$widthFrom: $max-width;
+	}
+
+	// Брейк-поинты в EM
+	$widthFromMedia: em($widthFrom);
+	$widthToMedia: em($widthTo);
+
+	// Формула плавающего значения
+	// Источник: https://css-tricks.com/linearly-scale-font-size-with-css-clamp-based-on-the-viewport/
+	$slope: math.div(($startSize - $minSize), ($widthFrom - $widthTo));
+	$yIntersection: -$widthTo * $slope + $minSize;
+	@if ($yIntersection==0) {
+		$yIntersection: 0.000001;
+	}
+	$flyValue: #{rem($yIntersection)}" + " #{$slope * 100}vw;
+
+	// Получение значения свойства
+	$propertyValue: #{"clamp(" rem($minSize) "," $flyValue "," rem($startSize) ")"};
+	// Если отрицательные значения
+	@if ($minSize > $startSize) {
+		$propertyValue: #{"clamp(" rem($startSize) "," $flyValue "," rem($minSize) ")"};
+	}
+
+	// Устанавливаем значения по умолчанию
+	@if $keepSize != 1 and $keepSize != 3 {
+		@media (min-width: $widthFromMedia) {
+			#{$property}: rem($startSize);
+		}
+	}
+	// Адаптируем размер в промежутке между указанными ширинами вьюпорта
+	@media (min-width: $widthToMedia) and (max-width: $widthFromMedia) {
+		// Если поддерживается clamp();
+		@supports (#{$property}: $propertyValue) {
+			#{$property}: $propertyValue;
+		}
+		// Если не поддерживается clamp();
+		@supports not (#{$property}: $propertyValue) {
+			#{$property}: calc(#{rem($minSize)} + #{$addSize} * (100vw - #{rem($widthTo)}) / #{math.div($widthFrom, 16) - math.div($widthTo, 16)});
+		}
+	}
+	@if $keepSize != 1 and $keepSize != 2 {
+		@media (max-width: $widthToMedia) {
+			#{$property}: rem($minSize);
+		}
+	}
+}

@@ -1,0 +1,142 @@
+.reward {
+	position: relative;
+
+	@media (min-width: rem($mobile)) {
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+		}
+		&::before {
+			content: '';
+			top: 40%;
+			left: -10%;
+			right: -10%;
+			bottom: 5%;
+			z-index: -1;
+			background: linear-gradient(
+				0deg,
+				#00000000,
+				#01645e0d 2%,
+				#00000000
+			);
+			transform: rotate(2deg);
+		}
+		&::after {
+			top: rem(80);
+			left: 60%;
+			right: 0;
+			bottom: 0;
+			background: linear-gradient(-90deg, #000f0ecf, #00000000);
+		}
+	}
+
+	&__title {
+		@include adaptiveValue('margin-bottom', 137, 50);
+	}
+
+	&__inner {
+		position: relative;
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		@include adaptiveValue('gap', 80, 70);
+		@media (min-width: rem($mobile)) {
+			@include adaptiveValue('max-width', 680, 500, $widthTo: $mobile);
+		}
+	}
+
+	&__item {
+		position: relative;
+		@media (min-width: rem($mobile)) {
+			@include adaptiveValue('padding-left', 100, 60, $widthTo: $mobile);
+		}
+	}
+
+	&__item-title {
+		@include adaptiveValue('font-size', 36, 24);
+		line-height: lh(42, 36);
+		font-weight: 600;
+
+		display: flex;
+		align-items: center;
+		gap: rem(20);
+
+		&:not(:last-child) {
+			margin-bottom: rem(20);
+		}
+	}
+
+	&__icon {
+		@include adaptiveValue('width', 74, 41, $widthTo: $mobile);
+		@include adaptiveValue('height', 74, 41, $widthTo: $mobile);
+
+		img {
+			width: 100%;
+			height: 100%;
+		}
+
+		@media (min-width: rem($mobile)) {
+			position: absolute;
+			top: rem(6);
+			left: 0;
+		}
+	}
+
+	&__text {
+		&:not(:last-child) {
+			margin-bottom: rem(20);
+		}
+	}
+
+	&__services {
+		display: flex;
+		flex-direction: column;
+		gap: rem(10);
+		font-weight: 700;
+		color: $text-accent;
+
+		&:not(:last-child) {
+			margin-bottom: rem(20);
+		}
+	}
+
+	&__services-item {
+		list-style-type: disc;
+		margin-left: em(22, 20);
+	}
+
+	&__btn {
+		margin-top: rem(50);
+		@media (min-width: rem($mobile-small)) {
+			display: inline-block;
+		}
+	}
+
+	&__img {
+		position: absolute;
+		top: 62%;
+		right: calc(50% - rem(375));
+		transform: translate(60%, -50%);
+		z-index: -1;
+		@include adaptiveValue('width', 857, 630, $widthTo: $mobile);
+
+		opacity: 0;
+
+		&._show {
+			opacity: 1;
+			transition: all $anim-duration;
+			transform: translate(50%, -50%);
+		}
+
+		img {
+			width: 100%;
+		}
+
+		@media (max-width: rem($mobile)) {
+			display: none;
+		}
+	}
+}

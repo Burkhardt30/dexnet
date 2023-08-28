@@ -1,0 +1,165 @@
+.btn {
+	font-size: rem(16);
+	font-weight: 500;
+	@extend %flex-center;
+	padding: 0 rem(30);
+	@include adaptiveValue('height', 53, 47);
+	border-radius: rem($rounded-mini);
+	background: linear-gradient(140deg, #00a098 0%, #01514d 100%);
+	overflow: hidden;
+	position: relative;
+
+	&::before,
+	&::after {
+		content: '';
+		display: block;
+		position: absolute;
+		inset: 0;
+		opacity: 0;
+		transition: opacity $duration;
+	}
+	&::before {
+		background: linear-gradient(140deg, #00b5ac 0%, #00706a 100%);
+	}
+	&::after {
+		z-index: 1;
+		background: linear-gradient(140deg, #01807a 0%, #00514c 100%);
+	}
+
+	span {
+		position: relative;
+		z-index: 2;
+	}
+
+	@media (any-hover: hover) {
+		&:hover {
+			&::before {
+				opacity: 1;
+			}
+		}
+	}
+
+	&:active {
+		&::after {
+			opacity: 1;
+		}
+	}
+}
+
+.border-btn {
+	display: block;
+	@include adaptiveValue('font-size', 20, 16);
+	font-weight: 600;
+	@include adaptiveValue('height', 53, 47);
+	border-radius: rem($rounded-mini);
+	overflow: hidden;
+	padding: 1px;
+	background: linear-gradient(170deg, #80cdc9, #30716e);
+
+	&__inner {
+		@extend %flex-center;
+		position: relative;
+		border-radius: rem($rounded-mini);
+		background: linear-gradient(140deg, #00a098, #01514d);
+		padding: 0 rem(37);
+		height: 100%;
+		overflow: hidden;
+
+		&::before,
+		&::after {
+			content: '';
+			display: block;
+			position: absolute;
+			inset: 0;
+			opacity: 0;
+			transition: opacity $duration;
+		}
+		&::before {
+			background: linear-gradient(140deg, #00b5ac, #00706a);
+		}
+		&::after {
+			z-index: 1;
+			background: linear-gradient(140deg, #017C76, #01716C);
+		}
+
+		span {
+			position: relative;
+			z-index: 2;
+		}
+	}
+
+	@media (any-hover: hover) {
+		&:hover {
+			::before {
+				opacity: 1;
+			}
+		}
+	}
+
+	&:active {
+		::after {
+			opacity: 1;
+		}
+	}
+}
+
+.big-btn {
+	display: block;
+	@include adaptiveValue('font-size', 24, 16);
+	font-weight: 600;
+	@include adaptiveValue('height', 67, 47);
+	border-radius: rem($rounded-mini);
+	overflow: hidden;
+	background: linear-gradient(170deg, #80cdc9, #30716e);
+	padding: 2px;
+
+	@media (max-width: rem($mobile)) {
+		padding: 1px;
+	}
+
+	&__inner {
+		@extend %flex-center;
+		position: relative;
+		border-radius: rem($rounded-mini);
+		background: linear-gradient(140deg, #00a098, #01514d);
+		padding: 0 rem(37);
+		height: 100%;
+		overflow: hidden;
+
+		&::before,
+		&::after {
+			content: '';
+			display: block;
+			position: absolute;
+			inset: 0;
+			opacity: 0;
+			transition: opacity $duration;
+		}
+		&::before {
+			background: linear-gradient(140deg, #00b5ac, #00706a);
+		}
+		&::after {
+			z-index: 1;
+			background: linear-gradient(140deg, #017C76, #01716C);
+		}
+
+		span {
+			position: relative;
+			z-index: 2;
+		}
+	}
+
+	@media (any-hover: hover) {
+		&:hover {
+			::before {
+				opacity: 1;
+			}
+		}
+	}
+
+	&:active {
+		::after {
+			opacity: 1;
+		}
+	}
+}

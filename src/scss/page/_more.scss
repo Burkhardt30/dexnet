@@ -1,0 +1,26 @@
+.more {
+	text-align: center;
+	@include adaptiveValue('padding-top', 107, 39);
+	@include adaptiveValue('padding-bottom', 60, 46);
+	overflow: hidden;
+	background: url("/img/decor/big-glow.svg") 50% 36% no-repeat;
+
+	@media (max-width: rem($mobile)) {
+		background-size: 300%;
+	}
+
+	&__title {
+		margin: 0 auto;
+		max-width: rem(770);
+		@include adaptiveValue("font-size", 48, 32);
+		line-height: lh(56, 48);
+		font-weight: 700;
+		margin-bottom: rem(50);
+	}
+
+	&__btn {
+		@media (min-width: rem($mobile-small)) {
+			display: inline-block;
+		}
+	}
+}

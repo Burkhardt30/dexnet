@@ -1,0 +1,84 @@
+.principles {
+	&__title {
+
+		@media (min-width: rem($mobile)) {
+			font-weight: 700;
+			
+			&::after {
+				content: '';
+				display: block;
+				@include adaptiveValue('height', 110, 70, $widthTo: $mobile);
+				background: url('/img/decor/path-below-2.svg') 50% 100% /
+					contain no-repeat;
+			}
+		}
+
+		@media (max-width: rem($mobile)) {
+			margin-bottom: rem(40);
+		}
+	}
+
+	&__list {
+		display: grid;
+		gap: rem(30) rem(20);
+		@media (min-width: rem($mobile)) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	&__item {
+		padding: 1px;
+		background: linear-gradient(90deg, #898d8db3, #2f3434b3);
+		border-radius: rem($rounded);
+		overflow: hidden;
+		transition: transform calc($duration * 2);
+
+		@media (any-hover: hover) {
+			&:hover {
+				transform: scale(1.02);
+				transition: transform $duration;
+			}
+		}
+	}
+
+	&__item-inner {
+		height: 100%;
+		background: #111616;
+		border-radius: rem($rounded);
+		@include adaptiveValue('padding-top', 30, 20);
+		@include adaptiveValue('padding-left', 30, 20);
+		@include adaptiveValue('padding-right', 30, 20);
+		padding-bottom: rem(50);
+		position: relative;
+
+		&::before {
+			content: '';
+			@include pos-center;
+			transform: translate(-50%, -50%) rotate(-10deg);
+			background: #d9d9d905;
+			filter: blur(rem(43));
+			@include adaptiveValue("width", 550, 305);
+			@include adaptiveValue("height", 130, 90);
+			border-radius: 50%;
+
+			@media (max-width: rem($tablet)) {
+				transform: translate(-50%, -50%) rotate(-20deg);
+			}
+
+			@media (max-width: rem($mobile)) {
+				transform: translate(-50%, -50%) rotate(-10deg);
+				background: #d9d9d918;
+			}
+		}
+	}
+
+	&__item-title {
+		@include adaptiveValue('font-size', 32, 24, $widthTo: $mobile);
+		line-height: lh(38, 32);
+		font-weight: 600;
+		@include adaptiveValue('margin-bottom', 40, 20, $widthTo: $mobile);
+	}
+
+	&__text {
+	}
+}

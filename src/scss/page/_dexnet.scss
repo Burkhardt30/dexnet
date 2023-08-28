@@ -1,0 +1,315 @@
+.dexnet {
+	&__inner {
+		@include adaptiveValue('padding-bottom', 25, 10);
+		position: relative;
+
+		&::before {
+			content: url('/img/decor/dexnet-honeycomb.png');
+			@include pos-center;
+			z-index: -1;
+
+			@media (max-width: rem($mobile)) {
+				content: none;
+			}
+		}
+		&::after {
+			content: '';
+			display: block;
+			@include adaptiveValue('height', 175, 80);
+			background: url('/img/decor/path-above.svg') 50% 0% / contain
+				no-repeat;
+
+			@media (max-width: rem($pc)) {
+				background-image: url('/img/decor/path-above-mobile.svg');
+			}
+		}
+	}
+
+	&__title {
+		text-align: center;
+		@include adaptiveValue('font-size', 80, 40);
+		line-height: lh(94, 80);
+		font-weight: 800;
+		@include adaptiveValue('margin-bottom', 67, 20);
+	}
+
+	&__desc {
+		text-align: center;
+		@include adaptiveValue('font-size', 36, 24);
+		line-height: lh(42, 36);
+		font-weight: 600;
+		max-width: rem(940);
+		margin: 0 auto;
+		@include adaptiveValue('margin-bottom', 67, 40);
+
+		@media (max-width: rem($mobile)) {
+			font-weight: 500;
+		}
+	}
+
+	&__benefits {
+		font-size: rem(20);
+		font-weight: 600;
+		display: grid;
+		gap: rem(20);
+		grid-auto-rows: 1fr;
+		grid-template-columns: repeat(4, 1fr);
+		@include adaptiveValue('padding-bottom', 93, 10);
+
+		@media (max-width: rem($pc)) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		@media (max-width: rem($mobile)) {
+			grid-template-columns: auto;
+		}
+	}
+
+	&__benefit {
+		background: $bg-dark;
+		backdrop-filter: blur(rem(4.5));
+		border-radius: rem($rounded-mini);
+		border: 1px solid #ffffff4d;
+		padding: rem(20);
+		display: flex;
+		flex-direction: column;
+		@include adaptiveValue('gap', 64, 0, $widthTo: $mobile);
+		overflow: hidden;
+		transition: transform calc($duration * 2);
+
+		@media (any-hover: hover) {
+			&:hover {
+				transform: scale(1.05);
+				transition: transform $duration;
+			}
+		}
+
+		&::before {
+			content: '';
+			@include pos-center;
+			transform: translate(-50%, -50%) rotate(-50deg);
+			background: #d9d9d90f;
+			filter: blur(rem(21));
+			@include adaptiveValue('width', 172, 190);
+			@include adaptiveValue('height', 75, 48);
+			border-radius: 50%;
+			@media (max-width: rem($tablet)) {
+				transform: translate(-50%, -50%) rotate(-30deg);
+			}
+			@media (max-width: rem($mobile)) {
+				transform: translate(-50%, -50%) rotate(-10deg);
+			}
+		}
+
+		img {
+			align-self: end;
+		}
+	}
+
+	&__choice {
+		max-width: rem(1040);
+		margin: 0 auto;
+	}
+}
+
+.choice {
+	&__title {
+		font-size: rem(40);
+		font-weight: 500;
+		text-align: center;
+		margin-bottom: rem(12);
+
+		@media (max-width: rem($mobile)) {
+			display: none;
+		}
+	}
+
+	&__paths {
+		display: grid;
+		@include adaptiveValue('column-gap', 80, 20, $widthTo: $mobile);
+		justify-content: center;
+		row-gap: rem(10);
+
+		@media (min-width: rem($mobile)) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@media (max-width: rem($mobile)) {
+			row-gap: rem(56);
+		}
+	}
+
+	&__versus {
+
+		@media (min-width: rem($mobile)) {
+			height: rem(175);
+			background: url('/img/decor/path-below.svg') 50% 0% / contain
+				no-repeat;
+			position: relative;
+			grid-row-start: 1;
+			grid-column: 1/-1;
+		}
+
+		span {
+			--ripple-scale: 1.35;
+
+			font-size: rem(45);
+			font-weight: 500;
+			width: 100%;
+			height: 100%;
+			padding-bottom: rem(5);
+			background: #019a94;
+			border-radius: 50%;
+			@extend %flex-center;
+			position: relative;
+
+			@media (max-width: rem($mobile)) {
+				--ripple-scale: 1.7;
+			}
+
+			&::before,
+			&::after {
+				content: '';
+				position: absolute;
+				inset: 0;
+				z-index: -1;
+				border-radius: 50%;
+				background: #019a95;
+			}
+			&::before {
+				animation: ripple 3s linear infinite;
+			}
+			&::after {
+				animation: ripple 3s 1.5s linear infinite;
+			}
+
+			@keyframes ripple {
+				0% {
+					transform: scale(1);
+					opacity: 0.5;
+				}
+				100% {
+					transform: scale(var(--ripple-scale));
+					opacity: 0;
+				}
+			}
+		}
+	}
+
+	&__circle {
+		width: rem(109);
+		height: rem(109);
+		margin: 0 auto;
+
+		@media (min-width: rem($mobile)) {
+			@include pos-center;
+			top: 56%;
+		}
+	}
+}
+
+.path {
+	padding: 1px;
+	background: linear-gradient(170deg, #a4a4a4, #00000000);
+	border-radius: rem($rounded-mini);
+	overflow: hidden;
+	max-width: rem(480);
+
+	&__inner {
+		height: 100%;
+		background: $bg-darker;
+		border-radius: rem($rounded-mini);
+		padding-top: rem(50);
+		@include adaptiveValue('padding-left', 30, 20);
+		@include adaptiveValue('padding-right', 30, 20);
+		@include adaptiveValue('padding-bottom', 110, 50);
+		position: relative;
+
+		@media (max-width: rem($mobile)) {
+			padding-top: rem(40);
+		}
+
+		&::before {
+			content: '';
+			@include pos-center;
+			transform: translate(-50%, -50%) rotate(-60deg);
+			background: #d9d9d90f;
+			filter: blur(rem(30.5));
+			width: rem(560);
+			@include adaptiveValue('height', 200, 150, $widthTo: $mobile);
+			border-radius: 50%;
+
+			@media (max-width: rem($tablet)) {
+				transform: translate(-50%, -50%) rotate(-70deg);
+			}
+
+			@media (max-width: rem($mobile)) {
+				content: none;
+			}
+		}
+	}
+
+	&__img {
+		@extend %flex-center;
+		width: rem(180);
+		height: rem(180);
+		margin: 0 auto;
+		@include adaptiveValue('margin-bottom', 30, 54);
+
+		img {
+			max-width: 100%;
+			max-height: 100%;
+			object-fit: contain;
+			object-position: 50% 50%;
+		}
+
+		@media (max-width: rem($mobile)) {
+			width: rem(219);
+			height: rem(219);
+
+			&--node {
+				position: relative;
+				z-index: 1;
+
+				&::before {
+					content: url('/img/decor/node-honeycomb-mobile.png');
+					@include pos-center;
+					z-index: -1;
+				}
+			}
+		}
+	}
+
+	&__title {
+		@include adaptiveValue('font-size', 36, 30, $widthTo: $mobile);
+		line-height: lh(35, 30);
+		font-weight: 600;
+		@include adaptiveValue('padding-bottom', 28.5, 10);
+		margin-bottom: rem(20);
+		border-bottom: 1px solid $text-general;
+	}
+
+	&__advantages {
+		font-weight: 500;
+		display: flex;
+		flex-direction: column;
+		gap: rem(20);
+	}
+
+	&__advantage {
+		display: flex;
+		gap: em(10, 20);
+
+		&--check {
+			&::before {
+				content: url('/img/icons/check.svg');
+				@include adaptiveValue('margin-top', 2, 0);
+			}
+		}
+		&--cross {
+			&::before {
+				content: url('/img/icons/cross.svg');
+				@include adaptiveValue('margin-top', 0, -3);
+			}
+		}
+	}
+}

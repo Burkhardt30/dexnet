@@ -1,0 +1,11 @@
+.logo {
+	a {
+		display: block;
+		@include adaptiveValue('width', 128, 73);
+		margin-bottom: em(6, 14);
+	}
+
+	img {
+		width: 100%;
+	}
+}
